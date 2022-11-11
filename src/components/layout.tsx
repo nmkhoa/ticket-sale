@@ -1,7 +1,7 @@
 // src/components/layout.tsx
-import React, { ReactNode } from 'react'
-import { Text, Center, Container, useColorModeValue } from '@chakra-ui/react'
-import Header from './header'
+import React, { ReactNode } from "react"
+import { Text, Center, Container, useColorModeValue } from "@chakra-ui/react"
+import Header from "./header"
 
 type Props = {
   children: ReactNode

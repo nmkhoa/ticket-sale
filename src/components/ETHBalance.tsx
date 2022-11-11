@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Web3Provider } from '@ethersproject/providers'
-import { Text} from '@chakra-ui/react'
+import { useState, useEffect } from "react";
+import { useWeb3React } from "@web3-react/core"
+import { Web3Provider } from "@ethersproject/providers"
+import { Text} from "@chakra-ui/react"
 import { formatEther } from "@ethersproject/units"
 
 const ETHBalance = () => {
