@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: Unlicense
+//SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.12;
 
 import "hardhat/console.sol";
@@ -11,7 +11,7 @@ contract MintToken is ERC20Capped, AccessControl {
     }
 
     function issueToken(address receiver, uint256 amount) public{
-        require(hasRole(MINTER_ROLE, msg.sender),"");
+        require(hasRole(MINTER_ROLE, msg.sender),"ERROR14");
         _mint(receiver, amount);
     }
 }

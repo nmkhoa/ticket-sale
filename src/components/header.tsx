@@ -1,7 +1,7 @@
 import NextLink from "next/link"
-import { Flex, Button, useColorModeValue, Spacer, Heading, LinkBox, LinkOverlay } from "@chakra-ui/react"
+import { Flex, Button, useColorModeValue, Spacer, Heading, LinkBox, LinkOverlay, Input } from "@chakra-ui/react"
 
-const siteTitle="FirstDAPP"
+const siteTitle="Ticket NFT"
 export default function Header() {
 
   return (
@@ -9,11 +9,20 @@ export default function Header() {
       <LinkBox>
         <NextLink href={'/'} passHref>
           <LinkOverlay>
-            <Heading size="md">{siteTitle}</Heading>
+            <Heading size="md" ml="50px">{siteTitle}</Heading>
           </LinkOverlay>
         </NextLink>
       </LinkBox>      
       <Spacer />
+       {/* <Input
+      borderColor = "black"
+      
+      width = "500px"
+      color='black'
+      placeholder='Tìm Kiếm'
+      _placeholder={{ color: 'inherit' }}
+      />
+      <Button  borderColor = "black" colorScheme='blue' variant='outline' > Tìm Kiếm </Button>  */}
       <Button >Button for Account </Button>
     </Flex>
   )

@@ -32,7 +32,9 @@ export type { ERC165 } from "./@openzeppelin/contracts/utils/introspection/ERC16
 export { ERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/ERC165__factory";
 export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC165";
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
-export type { MintToken } from "./contracts/Ticket.sol/MintToken";
-export { MintToken__factory } from "./factories/contracts/Ticket.sol/MintToken__factory";
 export type { TicketSale } from "./contracts/Ticket.sol/TicketSale";
 export { TicketSale__factory } from "./factories/contracts/Ticket.sol/TicketSale__factory";
+export type { Token } from "./contracts/Ticket.sol/Token";
+export { Token__factory } from "./factories/contracts/Ticket.sol/Token__factory";
+export type { MintToken } from "./contracts/Token.sol/MintToken";
+export { MintToken__factory } from "./factories/contracts/Token.sol/MintToken__factory";

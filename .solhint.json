@@ -5,6 +5,7 @@
     "func-visibility": ["warn", { "ignoreConstructors": true }],
     "no-empty-blocks": "off",
     "avoid-low-level-calls": "off",
-    "not-rely-on-time": "off"
+    "not-rely-on-time": "off",
+    "state-visibility": "off"
   }
 }

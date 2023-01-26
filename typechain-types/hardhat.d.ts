@@ -65,13 +65,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC165__factory>;
     getContractFactory(
-      name: "MintToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MintToken__factory>;
-    getContractFactory(
       name: "TicketSale",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.TicketSale__factory>;
+    getContractFactory(
+      name: "Token",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Token__factory>;
     getContractFactory(
       name: "MintToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -143,15 +143,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC165>;
     getContractAt(
-      name: "MintToken",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.MintToken>;
-    getContractAt(
       name: "TicketSale",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.TicketSale>;
+    getContractAt(
+      name: "Token",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Token>;
     getContractAt(
       name: "MintToken",
       address: string,

@@ -67,28 +67,20 @@ export interface TicketSaleInterface extends utils.Interface {
     "eventToOwner(uint256)": FunctionFragment;
     "fundWallet()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
-    "infoDetailTicket(uint256)": FunctionFragment;
     "infoEventTicket(uint256)": FunctionFragment;
     "infoSeller(address)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "listEventIDToCompany(address,uint256)": FunctionFragment;
-    "mintToken()": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
-    "ownerEventCount(address)": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "priceBySeat(uint256,string)": FunctionFragment;
     "reSaleTicket(uint256,uint256,uint256,uint256)": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
-    "saleTicketByID(uint256)": FunctionFragment;
     "setAddressToken(address)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
-    "ticketByEvent(uint256)": FunctionFragment;
-    "ticketIdToSeat(uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
@@ -106,28 +98,20 @@ export interface TicketSaleInterface extends utils.Interface {
       | "eventToOwner"
       | "fundWallet"
       | "getApproved"
-      | "infoDetailTicket"
       | "infoEventTicket"
       | "infoSeller"
       | "isApprovedForAll"
-      | "listEventIDToCompany"
-      | "mintToken"
       | "name"
       | "owner"
-      | "ownerEventCount"
       | "ownerOf"
-      | "priceBySeat"
       | "reSaleTicket"
       | "renounceOwnership"
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
-      | "saleTicketByID"
       | "setAddressToken"
       | "setApprovalForAll"
       | "supportsInterface"
       | "symbol"
-      | "ticketByEvent"
-      | "ticketIdToSeat"
       | "tokenURI"
       | "transferFrom"
       | "transferOwnership"
@@ -197,10 +181,6 @@ export interface TicketSaleInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "infoDetailTicket",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "infoEventTicket",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -212,24 +192,11 @@ export interface TicketSaleInterface extends utils.Interface {
     functionFragment: "isApprovedForAll",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(
-    functionFragment: "listEventIDToCompany",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(functionFragment: "mintToken", values?: undefined): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "ownerEventCount",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "ownerOf",
     values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "priceBySeat",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "reSaleTicket",
@@ -262,10 +229,6 @@ export interface TicketSaleInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "saleTicketByID",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "setAddressToken",
     values: [PromiseOrValue<string>]
   ): string;
@@ -278,14 +241,6 @@ export interface TicketSaleInterface extends utils.Interface {
     values: [PromiseOrValue<BytesLike>]
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "ticketByEvent",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ticketIdToSeat",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
   encodeFunctionData(
     functionFragment: "tokenURI",
     values: [PromiseOrValue<BigNumberish>]
@@ -329,10 +284,6 @@ export interface TicketSaleInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "infoDetailTicket",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "infoEventTicket",
     data: BytesLike
   ): Result;
@@ -341,22 +292,9 @@ export interface TicketSaleInterface extends utils.Interface {
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "listEventIDToCompany",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "mintToken", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "ownerEventCount",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "priceBySeat",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "reSaleTicket",
     data: BytesLike
@@ -374,10 +312,6 @@ export interface TicketSaleInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "saleTicketByID",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "setAddressToken",
     data: BytesLike
   ): Result;
@@ -390,14 +324,6 @@ export interface TicketSaleInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "ticketByEvent",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ticketIdToSeat",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "transferFrom",
@@ -645,18 +571,6 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    infoDetailTicket(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [string, string, string, number] & {
-        name: string;
-        venue: string;
-        describeDetail: string;
-        choice: number;
-      }
-    >;
-
     infoEventTicket(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -689,33 +603,14 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    listEventIDToCompany(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    mintToken(overrides?: CallOverrides): Promise<[string]>;
-
     name(overrides?: CallOverrides): Promise<[string]>;
 
     owner(overrides?: CallOverrides): Promise<[string]>;
-
-    ownerEventCount(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<[string]>;
-
-    priceBySeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
 
     reSaleTicket(
       _ticketId: PromiseOrValue<BigNumberish>,
@@ -744,31 +639,6 @@ export interface TicketSale extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    saleTicketByID(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        string,
-        string,
-        string,
-        string,
-        number
-      ] & {
-        price: BigNumber;
-        timeStart: BigNumber;
-        timeEnd: BigNumber;
-        name: string;
-        venue: string;
-        describeDetail: string;
-        seat: string;
-        choice: number;
-      }
-    >;
-
     setAddressToken(
       _ckAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -786,16 +656,6 @@ export interface TicketSale extends BaseContract {
     ): Promise<[boolean]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
-
-    ticketByEvent(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    ticketIdToSeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
 
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -881,18 +741,6 @@ export interface TicketSale extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  infoDetailTicket(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [string, string, string, number] & {
-      name: string;
-      venue: string;
-      describeDetail: string;
-      choice: number;
-    }
-  >;
-
   infoEventTicket(
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
@@ -925,33 +773,14 @@ export interface TicketSale extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  listEventIDToCompany(
-    arg0: PromiseOrValue<string>,
-    arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  mintToken(overrides?: CallOverrides): Promise<string>;
-
   name(overrides?: CallOverrides): Promise<string>;
 
   owner(overrides?: CallOverrides): Promise<string>;
-
-  ownerEventCount(
-    arg0: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
 
   ownerOf(
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  priceBySeat(
-    arg0: PromiseOrValue<BigNumberish>,
-    arg1: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
 
   reSaleTicket(
     _ticketId: PromiseOrValue<BigNumberish>,
@@ -980,31 +809,6 @@ export interface TicketSale extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  saleTicketByID(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      string,
-      string,
-      string,
-      string,
-      number
-    ] & {
-      price: BigNumber;
-      timeStart: BigNumber;
-      timeEnd: BigNumber;
-      name: string;
-      venue: string;
-      describeDetail: string;
-      seat: string;
-      choice: number;
-    }
-  >;
-
   setAddressToken(
     _ckAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1022,16 +826,6 @@ export interface TicketSale extends BaseContract {
   ): Promise<boolean>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
-
-  ticketByEvent(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  ticketIdToSeat(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
 
   tokenURI(
     tokenId: PromiseOrValue<BigNumberish>,
@@ -1117,18 +911,6 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    infoDetailTicket(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [string, string, string, number] & {
-        name: string;
-        venue: string;
-        describeDetail: string;
-        choice: number;
-      }
-    >;
-
     infoEventTicket(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1161,33 +943,14 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    listEventIDToCompany(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    mintToken(overrides?: CallOverrides): Promise<string>;
-
     name(overrides?: CallOverrides): Promise<string>;
 
     owner(overrides?: CallOverrides): Promise<string>;
-
-    ownerEventCount(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    priceBySeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     reSaleTicket(
       _ticketId: PromiseOrValue<BigNumberish>,
@@ -1214,31 +977,6 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    saleTicketByID(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        string,
-        string,
-        string,
-        string,
-        number
-      ] & {
-        price: BigNumber;
-        timeStart: BigNumber;
-        timeEnd: BigNumber;
-        name: string;
-        venue: string;
-        describeDetail: string;
-        seat: string;
-        choice: number;
-      }
-    >;
-
     setAddressToken(
       _ckAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -1256,16 +994,6 @@ export interface TicketSale extends BaseContract {
     ): Promise<boolean>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
-
-    ticketByEvent(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    ticketIdToSeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<string>;
 
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1471,11 +1199,6 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    infoDetailTicket(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     infoEventTicket(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1492,31 +1215,12 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    listEventIDToCompany(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    mintToken(overrides?: CallOverrides): Promise<BigNumber>;
-
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
-    ownerEventCount(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    priceBySeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1547,11 +1251,6 @@ export interface TicketSale extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    saleTicketByID(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     setAddressToken(
       _ckAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1569,16 +1268,6 @@ export interface TicketSale extends BaseContract {
     ): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
-
-    ticketByEvent(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    ticketIdToSeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1665,11 +1354,6 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    infoDetailTicket(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     infoEventTicket(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1686,31 +1370,12 @@ export interface TicketSale extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    listEventIDToCompany(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    mintToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    ownerEventCount(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    priceBySeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1741,11 +1406,6 @@ export interface TicketSale extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    saleTicketByID(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     setAddressToken(
       _ckAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1763,16 +1423,6 @@ export interface TicketSale extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    ticketByEvent(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    ticketIdToSeat(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
 
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,

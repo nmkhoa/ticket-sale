@@ -15,11 +15,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src/pages",    
-    
+    "strictNullChecks": false,
+    "noImplicitAny": false,  
+    "baseUrl": "./src/pages",  
+     
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
-  
-  
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/nhap.js"],
+  "exclude": ["node_modules"], 
 }

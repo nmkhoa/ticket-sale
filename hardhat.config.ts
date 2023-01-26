@@ -1,6 +1,10 @@
 import { HardhatUserConfig } from "hardhat/config";
+import * as dotenv from 'dotenv' 
 import { task } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+
+dotenv.config()
+
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
 
@@ -41,7 +45,9 @@ const config: HardhatUserConfig = {
   //     accounts: ["0xd67e3685dfe7d23ae09de01fac32da53c58ae72a3d4f1a55fb0ef99b58d81907"],
   //   },
     },
-    
+    paths: {
+      artifacts: './src/artifacts',
+    },
 
 
 };

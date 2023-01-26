@@ -1,5 +1,8 @@
-//SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.12;
+
+// Uncomment this line to use console.log
+// import "hardhat/console.sol";
 
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -8,7 +11,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-interface MintToken {
+interface Token {
         function issueToken(address receiver, uint256 amount) external;
 }
 
@@ -60,16 +63,16 @@ contract TicketSale is Ownable,ERC721 {
 
     address public fundWallet;
     mapping (uint256 => address ) public eventToOwner;
-    mapping (address => uint256 ) public ownerEventCount;
+    mapping (address => uint256 ) ownerEventCount;
     mapping (address => OrganizationalUintInfo ) public infoSeller;
-    mapping (address => mapping (uint256 => uint256)) public listEventIDToCompany;
+    mapping (address => mapping (uint256 => uint256)) listEventIDToCompany;
     mapping (uint256 => InfoTicketSale) public infoEventTicket;
-    mapping (uint256 => DetailTicket) public infoDetailTicket;
-    mapping (uint256 => mapping(string => uint256 )) public priceBySeat;
-    mapping (uint256 => uint256 ) public ticketByEvent;
-    mapping (uint256 => InfoSaleTicket) public saleTicketByID;
-    mapping (uint256 => string ) public ticketIdToSeat;
-    // mapping (uint256 => mapping(uint256 => uint256))  arrayTicketRemaining;
+    mapping (uint256 => DetailTicket) infoDetailTicket;
+    mapping (uint256 => mapping(string => uint256 )) priceBySeat;
+    mapping (uint256 => uint256 ) ticketByEvent;
+    mapping (uint256 => InfoSaleTicket) saleTicketByID;
+    mapping (uint256 => string ) ticketIdToSeat;
+    mapping (uint256 => mapping(string => uint256)) amountBySeat;
     event CreateInfoCompany(address _company,string _companyName, string _location, string _hostline,string  _businessCode );
     event CreateInfoTicket (uint256 _eventId,string _venue,uint256 _startSales,uint256 _endSales,uint256 _ticketCount,uint256 _buyMax,TicketType _choice);
     event CreateInforDetailTicket (uint256 _eventId,string _name,string _describe,string[] _seat,uint256[] _price,TicketType _type);
@@ -77,7 +80,7 @@ contract TicketSale is Ownable,ERC721 {
     event BuyTicket (uint256 _ticketId,uint256 _price,DetailTicket _ticket);
     constructor() ERC721 ("Ticket", "TCT") {}
     modifier onlyOwnerOTicket(uint _eventId) {
-        require(eventToOwner[_eventId] == msg.sender,"");
+        require(eventToOwner[_eventId] == msg.sender,"ERROR1");
         _;
     }
     function createInfoCompany(address _company,string memory _name, string memory _address, string memory _phone, string memory _businessCode) external onlyOwner {
@@ -114,12 +117,12 @@ contract TicketSale is Ownable,ERC721 {
         address _token,
         TicketType  _type
     ) external payable {
-        require(infoSeller[msg.sender].check == true , "Error 1");
-        require(_saleEndTime > _saleStartTime, "please re-enter part-time ticket");
-        require( sum(_amount) > 0 ,"Error 2");
-        require(_buyMax > 0 ,"Error 3");
-        require(_buyMax < sum(_amount),"Please re-enter quantity");
-        require((_seat.length == _price.length) &&  (_price.length == _amount.length), "Error 4");
+        require(infoSeller[msg.sender].check == true , "ERROR2");
+        require(_saleEndTime > _saleStartTime, "ERROR3");
+        require( sum(_amount) > 0 ,"ERROR4");
+        require(_buyMax > 0 ,"ERROR5");
+        require(_buyMax < sum(_amount),"ERROR6");
+        require((_seat.length == _price.length) &&  (_price.length == _amount.length), "ERROR7");
         uint256 totalFund;
         if(_type == TicketType.footballTickets ) {
             totalFund = sum(_amount) * 5000000000000;
@@ -143,27 +146,39 @@ contract TicketSale is Ownable,ERC721 {
         uint256 length = ownerEventCount[msg.sender];
         listEventIDToCompany[msg.sender][length] = neweventID;
         for (uint256 index = 0; index < _seat.length; index++) {
+            amountBySeat[neweventID][_seat[index]] = _amount[index];
             priceBySeat[neweventID][_seat[index]] = _price[index];
         }
         emit CreateInfoTicket(neweventID,_venue,_saleStartTime,_saleEndTime,sum(_amount),_buyMax,_type);
         emit CreateInforDetailTicket (neweventID,_name,_describeDetail,_seat,_price,_type);
     }
     
-    MintToken public mintToken;
+    Token mintToken;
     function setAddressToken (address _ckAddress) external onlyOwner {
-        mintToken = MintToken(_ckAddress);
+        mintToken = Token(_ckAddress);
     
     }
 
-     function buyTicket (uint256 _eventId, uint256 _amount, string[] memory _seat,address _token) public payable {
+    function checkAmout(uint256 _eventId ,string[] memory _seat, uint256[] memory _amount ) private view returns(bool) {
+        require(_seat.length == _amount.length,"error");
+        for(uint256 i = 0; i < _seat.length; i++){
+            if(amountBySeat[_eventId][_seat[i]] < _amount[i])
+            return false;
+        }
+        return true;
+    }
+
+     function buyTicket (uint256 _eventId, uint256[] memory _amount, string[] memory _seat,address _token) public payable {
         InfoTicketSale memory infoticketsale = infoEventTicket[_eventId];
         InfoTicketSale memory infoticketbefore = infoEventTicket[_eventId-1];
-        require(_amount > 0 ,"Error 5");
-        require(_amount < (infoticketsale.numberOfTicketsSale - infoticketsale.numberOfTicketsSold),"Error 6");
-        require(infoticketsale.saleStartTime < block.timestamp && infoticketsale.saleStartTime > block.timestamp,"sold out time");
-        require(_amount < infoticketsale.maxBuy,"you bought too much");
-        require(_amount < infoticketsale.numberOfTicketsSale,"Error 8");
-        require(_amount == _seat.length,"Error 9");
+        require(sum(_amount) > 0 ,"ERROR8");
+        require(checkAmout(_eventId,_seat,_amount),"errorrr");
+        require(_amount.length == _seat.length,"error14");
+        require(sum(_amount) < (infoticketsale.numberOfTicketsSale - infoticketsale.numberOfTicketsSold),"ERROR9");
+        require(infoticketsale.saleStartTime < block.timestamp && infoticketsale.saleStartTime > block.timestamp,"ERROR10");
+        require(sum(_amount) < infoticketsale.maxBuy,"ERROR11");
+        require(sum(_amount) < infoticketsale.numberOfTicketsSale,"ERROR12");
+        require(_amount.length == _seat.length,"ERROR13");
         uint256 totalFund ;
         for (uint256 index = 0; index < _seat.length; index++) {
             totalFund = totalFund + priceBySeat[_eventId][_seat[index]];
@@ -182,15 +197,18 @@ contract TicketSale is Ownable,ERC721 {
             infoticketbefore.numberOfTicketsSale = 0;
         }
         DetailTicket memory detailTicket = infoDetailTicket[_eventId];
-        for (uint i = 0; i < _amount; i++) {
+        for (uint i = 0; i < _amount.length; i++) {
+            for(uint j = 0; j < _amount[i]; j++){
            uint256 ticketId =  infoticketbefore.numberOfTicketsSale + infoticketsale.numberOfTicketsSold + 1;
             _safeMint(msg.sender, ticketId);
             ticketByEvent[ticketId] = _eventId;
             infoticketsale.numberOfTicketsSold += 1;
             ticketIdToSeat[ticketId] = _seat[i];
+            amountBySeat[_eventId][_seat[i]]--;
             emit CreateTicketId(ticketId,detailTicket.name,detailTicket.describeDetail,_seat[i]);
+            }
         }
-        mintToken.issueToken(msg.sender,_amount);
+        mintToken.issueToken(msg.sender,sum(_amount));
      }
      function burnTicket (uint256 _ticketId ) public {
         uint256 _eventId = ticketByEvent[_ticketId];
