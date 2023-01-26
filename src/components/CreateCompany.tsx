@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 import { parseEther }from "@ethersproject/units"
 import { Button, Input , NumberInput,  NumberInputField,  FormControl,  FormLabel } from '@chakra-ui/react'
 import   Ticket  from "../artifacts/contracts/Ticket.sol/TicketSale.json";
-// import { abi } from "../artifacts/contracts/Ticket.sol/Token.json"
+
 interface Props {
     addressContract: string
 }

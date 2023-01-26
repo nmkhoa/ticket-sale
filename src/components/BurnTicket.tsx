@@ -20,8 +20,8 @@ const CreateBurnTicket =  (props:Props) => {
         // new contract instance with **signer**
         // const ticket = new Contract(addressContract, ticketabi , library.getSigner());
         const ticket = new Contract(addressContract, Ticket.abi, library.getSigner());
-        const createCompany = await ticket.burnTicket(ticketId).catch('error', console.error)
-        await createCompany.wait() 
+        const burnticket = await ticket.burnTicket(ticketId).catch('error', console.error)
+        await burnticket.wait() 
       }
       const ticketid = (value:string) => setTicketId(value)
       return (

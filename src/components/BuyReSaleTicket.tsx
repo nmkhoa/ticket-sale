@@ -20,8 +20,8 @@ const CreateReBuyTicket =  (props:Props) => {
         // new contract instance with **signer**
         // const ticket = new Contract(addressContract, ticketabi , library.getSigner());
         const ticket = new Contract(addressContract, Ticket.abi, library.getSigner());
-        const createCompany = await ticket.buyReSaleTicket(ticketId).catch('error', console.error)
-        await createCompany.wait() 
+        const buyticket = await ticket.buyReSaleTicket(ticketId).catch('error', console.error)
+        await buyticket.wait() 
       }
       const ticketid = (value:string) => setTicketId(value)
       return (
