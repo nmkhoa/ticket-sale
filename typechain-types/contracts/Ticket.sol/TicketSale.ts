@@ -61,7 +61,7 @@ export interface TicketSaleInterface extends utils.Interface {
     "balanceOf(address)": FunctionFragment;
     "burnTicket(uint256)": FunctionFragment;
     "buyReSaleTicket(uint256,address)": FunctionFragment;
-    "buyTicket(uint256,uint256,string[],address)": FunctionFragment;
+    "buyTicket(uint256,uint256[],string[],address)": FunctionFragment;
     "creatEventSaleTicket(string,string,string,string[],uint256,uint256,uint256[],uint256[],uint256,address,uint8)": FunctionFragment;
     "createInfoCompany(address,string,string,string,string)": FunctionFragment;
     "eventToOwner(uint256)": FunctionFragment;
@@ -137,7 +137,7 @@ export interface TicketSaleInterface extends utils.Interface {
     functionFragment: "buyTicket",
     values: [
       PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>[],
       PromiseOrValue<string>[],
       PromiseOrValue<string>
     ]
@@ -529,7 +529,7 @@ export interface TicketSale extends BaseContract {
 
     buyTicket(
       _eventId: PromiseOrValue<BigNumberish>,
-      _amount: PromiseOrValue<BigNumberish>,
+      _amount: PromiseOrValue<BigNumberish>[],
       _seat: PromiseOrValue<string>[],
       _token: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
@@ -699,7 +699,7 @@ export interface TicketSale extends BaseContract {
 
   buyTicket(
     _eventId: PromiseOrValue<BigNumberish>,
-    _amount: PromiseOrValue<BigNumberish>,
+    _amount: PromiseOrValue<BigNumberish>[],
     _seat: PromiseOrValue<string>[],
     _token: PromiseOrValue<string>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
@@ -869,7 +869,7 @@ export interface TicketSale extends BaseContract {
 
     buyTicket(
       _eventId: PromiseOrValue<BigNumberish>,
-      _amount: PromiseOrValue<BigNumberish>,
+      _amount: PromiseOrValue<BigNumberish>[],
       _seat: PromiseOrValue<string>[],
       _token: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -1157,7 +1157,7 @@ export interface TicketSale extends BaseContract {
 
     buyTicket(
       _eventId: PromiseOrValue<BigNumberish>,
-      _amount: PromiseOrValue<BigNumberish>,
+      _amount: PromiseOrValue<BigNumberish>[],
       _seat: PromiseOrValue<string>[],
       _token: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
@@ -1312,7 +1312,7 @@ export interface TicketSale extends BaseContract {
 
     buyTicket(
       _eventId: PromiseOrValue<BigNumberish>,
-      _amount: PromiseOrValue<BigNumberish>,
+      _amount: PromiseOrValue<BigNumberish>[],
       _seat: PromiseOrValue<string>[],
       _token: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
