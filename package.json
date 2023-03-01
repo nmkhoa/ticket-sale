@@ -34,7 +34,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
-    "ethereum-waffle": "^3.4.4",
     "ethers": "^5.7.2",
     "framer-motion": "^7.6.5",
     "hardhat": "^2.12.2",
