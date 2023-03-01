@@ -24,34 +24,34 @@ const CreateReSaleTicket =  (props:Props) => {
     
         // new contract instance with **signer**
         const ticket = new Contract(addressContract, Ticket.abi , library.getSigner());
-        await ticket.reSaleTicket(ticketId,price,timeStart,timeEnd).catch('error', console.error)
+        await ticket.reSaleTicket(ticketId,price,getTimestamp(timeStart),getTimestamp(timeEnd)).catch('error', console.error)
       }
       const ticketid = (value:string) => setTicketId(value)
       const Price = (value:string) => setPrice(value)
-      const timestart = (value:string) => setTimeStart(value)
-      const timeend = (value:string) => setTimeEnd(value)
+      function getTimestamp(date:any)
+      {
+        var tp = Math.round(Date.parse(date) / 1000);
+        return tp;
+      }
       
       return (
         <div>
             <form onSubmit={creatEventSaleTicket}>
               <FormControl>
                 <FormLabel htmlFor='ticketid'>Nhập ID của vé </FormLabel>
-                <NumberInput id="ticketid" onChange={Price}>
+                <NumberInput id="ticketid" onChange={ticketid} my={3}>
                 <NumberInputField />
                 </NumberInput>
                 <FormLabel htmlFor='price'>Nhập Giá Vé </FormLabel>
-                <NumberInput id="price" onChange={timestart}>
+                <NumberInput id="price" onChange={Price} my={3}>
                 <NumberInputField />
                 </NumberInput>
-                <FormLabel htmlFor='timestart'>Thời Gian Bắt Đầu Bán </FormLabel>
-                <NumberInput id="timestart" onChange={timeend}>
-                <NumberInputField />
-                </NumberInput>
-                <FormLabel htmlFor='timeend'>Thời Gian Kết Thúc Bán </FormLabel>
-                <NumberInput id="timeend" onChange={ticketid}>
-                <NumberInputField />
-                </NumberInput>
-                <Button type="submit" isDisabled={!account}>Transfer</Button>
+                <FormLabel htmlFor="party">Nhập ngày giờ bắt đầu bán</FormLabel>
+                <Input id="time1" type="datetime-local" name="partydate1" onChange={(e) => setTimeStart(e.target.value)} my={3} />
+                
+                <FormLabel htmlFor="party">Nhập ngày giờ kết thúc bán</FormLabel>
+                <Input id="time2" type="datetime-local" name="partydate2" onChange={(e) => setTimeEnd(e.target.value)} my={3}/>
+                <Button type="submit" isDisabled={!account} my={3}>Transfer</Button>
               </FormControl>
             </form>
         </div>

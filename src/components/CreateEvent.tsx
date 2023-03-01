@@ -35,10 +35,15 @@ const CreateEvent =  (props:Props) => {
     
         // new contract instance with **signer**
         const ticket = new Contract(addressContract, Ticket.abi , library.getSigner());
-        await ticket.creatEventSaleTicket(venue,name,discribeDetail,activitySeat,saleStartTime,saleEndTime,activityAmount,activityPrice,buyMax,addressToken).catch('error', console.error)
+        await ticket.creatEventSaleTicket(venue,name,discribeDetail,activitySeat,getTimestamp(saleStartTime),getTimestamp(saleEndTime),activityAmount,activityPrice,buyMax,addressToken).catch('error', console.error)
       }
-      const timeStart = (value:string) => setSaleStartTime(value)
-      const timeEnd = (value:string) => setSaleEndTime(value) 
+      
+      function getTimestamp(date:any)
+      {
+        var tp = Math.round(Date.parse(date) / 1000);
+        return tp;
+      }
+
       const price = (value:string) => setValuePrice(value)
       const amount = (value:string) => setValueAmount(value)
       const buymax = (value:string) => setBuyMax(value)
@@ -64,44 +69,44 @@ const CreateEvent =  (props:Props) => {
                 <Input id="name" type="text" required  onChange={(e) => setName(e.target.value)} my={3}/>
                 <FormLabel htmlFor='discribe'>Mô Tả Chi Tiết: </FormLabel>
                 <Input id="discribe" type="text" required  onChange={(e) => setDiscribeDetail(e.target.value)} my={3}/>
-                <FormLabel htmlFor='timestart'>Thời Gian Bắt Đầu Bán: </FormLabel>
+                {/* <FormLabel htmlFor='timestart'>Thời Gian Bắt Đầu Bán: </FormLabel>
                 <NumberInput id="timestart" onChange={timeStart}>
                 <NumberInputField />
-                </NumberInput>
-                <FormLabel htmlFor='timeend'>Thời Gian Kết Thúc Bán: </FormLabel>
-                <NumberInput id="timeend" onChange={timeEnd}>
-                <NumberInputField />
-                </NumberInput>
+                </NumberInput> */}
+                <FormLabel htmlFor="party">Nhập ngày giờ bắt đầu bán</FormLabel>
+                <Input id="time1" type="datetime-local" name="partydate1" onChange={(e) => setSaleStartTime(e.target.value)} my={3} />
                 
+                <FormLabel htmlFor="party">Nhập ngày giờ kết thúc bán</FormLabel>
+                <Input id="time2" type="datetime-local" name="partydate2" onChange={(e) => setSaleEndTime(e.target.value)} my={3}/>
                 <FormLabel htmlFor='buymax'>số lượng vé tối đa có thể mua: </FormLabel>
-                <NumberInput id="buymax" onChange={buymax}>
+                <NumberInput id="buymax" onChange={buymax} my={3}>
                 <NumberInputField />
                 </NumberInput>
                 <FormLabel htmlFor='token'>Địa chỉ Token: </FormLabel>
                 <Input id="token" type="text" required  onChange={(e) => setAddressToken(e.target.value)} my={3}/>
                 <FormLabel htmlFor='business'>Chỗ Ngồi: </FormLabel>
                 <Input id="business" type="text" required  value={valueSeat} onChange={e => setValueSeat(e.target.value)} my={3} />
-                <Button onClick={handleSetSeat}>
+                <Button onClick={handleSetSeat} my={3}>
                   thêm
                 </Button>
-                {JSON.stringify(activitySeat)}
+                {/* {JSON.stringify(activitySeat)} */}
                 <FormLabel htmlFor='price'>Giá vé theo chỗ ngồi: </FormLabel>
-                <NumberInput id="price" value={valuePrice} onChange={price}>
+                <NumberInput id="price" value={valuePrice} onChange={price} my={3}>
                 <NumberInputField />
                 </NumberInput>
-                <Button onClick={handleSetPrice}>
+                <Button onClick={handleSetPrice} my={3} >
                   thêm
                 </Button>
-                {JSON.stringify(activityPrice)}
+                {/* {JSON.stringify(activityPrice)} */}
                 <FormLabel htmlFor='amount'>Số lượng vé theo chỗ ngồi: </FormLabel>
-                <NumberInput id="amount" value={valueAmount} onChange={amount}>
+                <NumberInput id="amount" value={valueAmount} onChange={amount} my={3}>
                 <NumberInputField />
                 </NumberInput>
-                <Button onClick={handleSetAmount}>
+                <Button onClick={handleSetAmount} my={3} >
                   thêm
                 </Button>
-                {JSON.stringify(activityAmount)}
-                <Button type="submit" isDisabled={!account}>Transfer</Button>
+                {/* {JSON.stringify(activityAmount)} */}
+                <div> <Button type="submit" isDisabled={!account} my={3}>Transfer</Button> </div>
               </FormControl>
             </form>
         </div>

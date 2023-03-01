@@ -44,26 +44,26 @@ const CreateBuyTicket =  (props:Props) => {
             <form onSubmit={createBuyTicket}>
               <FormControl>
                 <FormLabel htmlFor='eventid'>Nhập id event của sự kiện: </FormLabel>
-                <NumberInput id="eventid" onChange={eventid}>
+                <NumberInput id="eventid" onChange={eventid} my={3}>
                 <NumberInputField />
                 </NumberInput>
                 <FormLabel htmlFor='token'>Địa chỉ Token: </FormLabel>
                 <Input id="token" type="text" required  onChange={(e) => setAddressToken(e.target.value)} my={3}/>
                 <FormLabel htmlFor='seat'>Chỗ Ngồi: </FormLabel>
                 <Input id="seat" type="text" required  value={valueSeat} onChange={e => setValueSeat(e.target.value)} my={3} />
-                <Button onClick={handleSetSeat}>
+                <Button onClick={handleSetSeat} my={3}>
                   thêm
                 </Button>
-                {JSON.stringify(activitySeat)}
+                {/* {JSON.stringify(activitySeat)} */}
                 <FormLabel htmlFor='amount'>Số lượng vé theo chỗ ngồi: </FormLabel>
-                <NumberInput id="amount" value={valueAmount} onChange={amount}>
+                <NumberInput id="amount" value={valueAmount} onChange={amount} my={3}>
                 <NumberInputField />
                 </NumberInput>
-                <Button onClick={handleSetAmount}>
+                <Button onClick={handleSetAmount} my={3}>
                   thêm
                 </Button>
-                {JSON.stringify(activityAmount)}
-                <Button type="submit" isDisabled={!account}>Transfer</Button>
+                {/* {JSON.stringify(activityAmount)} */}
+                <div><Button type="submit" isDisabled={!account} my={3}>Transfer</Button></div>
               </FormControl>
             </form>
         </div>

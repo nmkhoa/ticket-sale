@@ -20,7 +20,7 @@ const CreateReBuyTicket =  (props:Props) => {
         // new contract instance with **signer**
         // const ticket = new Contract(addressContract, ticketabi , library.getSigner());
         const ticket = new Contract(addressContract, Ticket.abi, library.getSigner());
-        const buyticket = await ticket.buyReSaleTicket(ticketId).catch('error', console.error)
+        const buyticket = await ticket.buyReSaleTicket(ticketId,token).catch('error', console.error)
         await buyticket.wait() 
       }
       const ticketid = (value:string) => setTicketId(value)
@@ -30,12 +30,12 @@ const CreateReBuyTicket =  (props:Props) => {
               <FormControl>
                 
                 <FormLabel htmlFor='ticketid'>Nhập ID của vé </FormLabel>
-                <NumberInput id="ticketid" onChange={ticketid}>
+                <NumberInput id="ticketid" onChange={ticketid} my={3}>
                 <NumberInputField />
                 </NumberInput>
                 <FormLabel htmlFor='token'>Địa chỉ Token: </FormLabel>
                 <Input id="token" type="text" required  onChange={(e) => setToken(e.target.value)} my={3}/>
-                <Button type="submit" isDisabled={!account}>Transfer</Button>
+                <Button type="submit" isDisabled={!account} my={3}>Transfer</Button>
               </FormControl>
             </form>
         </div>
