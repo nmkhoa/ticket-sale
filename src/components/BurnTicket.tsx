@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { Contract } from "@ethersproject/contracts";
 import {  Input , NumberInput,  NumberInputField,  FormControl,  FormLabel, Button } from '@chakra-ui/react'
-import  Ticket  from "../artifacts/contracts/Ticket.sol/TicketSale.json"
+import  Ticket  from "../config/ticket.json"
 interface Props {
     addressContract: string
 }
